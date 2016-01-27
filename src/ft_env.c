@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 21:12:58 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/25 12:29:07 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/01/27 18:04:08 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@
 #include "framework_light/fk_normal_sphere.h"
 #include "framework_light/fk_normal_cylinder.h"
 
-void		ft_setup_inter(t_fctinter *inter)
+void		ft_setup_inter(t_fctinter inter[DEFAULT])
 {
-	inter[SPHERE] = (float (*)(t_ray, void*, float *))&intersect_sphere;
-	inter[PLANE] = (float (*)(t_ray, void*, float *))&intersect_plan;
-	inter[CYLINDER] = (float (*)(t_ray, void*, float *))&intersect_cylinder;
+	inter[SPHERE] = (t_fctinter)&intersect_sphere;
+	inter[PLANE] = (t_fctinter)&intersect_plan;
+	inter[CYLINDER] = (t_fctinter)&intersect_cylinder;
 	inter[CONE] = NULL;
 	inter[DEFAULT] = NULL;
 }
 
-void		ft_setup_normal(t_fctnormal *normal)
+void		ft_setup_normal(t_fctnormal normal[DEFAULT])
 {
-	normal[SPHERE] = (t_vector3 (*)(t_vector3, void *))&normal_sphere;
-	normal[PLANE] = (t_vector3 (*)(t_vector3, void *))&normal_plan;
-	normal[CYLINDER] = (t_vector3 (*)(t_vector3, void *))&normal_cylinder;
+	normal[SPHERE] = (t_fctnormal)&normal_sphere;
+	normal[PLANE] = (t_fctnormal)&normal_plan;
+	normal[CYLINDER] = (t_fctnormal)&normal_cylinder;
 	normal[CONE] = NULL;
 	normal[DEFAULT] = NULL;
 }
